@@ -1,18 +1,10 @@
 package consultas;
 
-import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.Toolkit;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.ImageIcon;
@@ -198,58 +190,46 @@ public class ConsultasDb extends javax.swing.JFrame {
 
     private void BtnAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAltaActionPerformed
         
-        BtnAlta.addActionListener(new ActionListener(){
-            
-            public void actionPerformed(ActionEvent arg){
+        BtnAlta.addActionListener((ActionEvent arg) -> {
+            Lblresultado.setText("");
+            try{
+                try (Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/basedesarrollo", "root", "")){
+                    Statement comando = conexion.createStatement();
+                    comando.executeUpdate("insert into articulos (descripcion, precio) values ('" +Tf1.getText() + " '," +Tf2.getText()+ ")");
+                    
+                    conexion.close();
+                }
                 
-                Lblresultado.setText("");
-                try{
-                        try (Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/basedesarrollo", "root", "")){
-                                Statement comando = conexion.createStatement();
-                                comando.executeUpdate("insert into articulos (descripcion, precio) values ('" +Tf1.getText() + " '," +Tf2.getText()+ ")");
-                                
-                         conexion.close();
-                        }
-                        
-                   Lblresultado.setText("se registraron los datos del producto ingresado");
-                   
-                   Tf1.setText("");
-                   Tf2.setText("");                   
-                } catch (SQLException ex){
-                    setTitle(ex.toString());
-                }            
+                Lblresultado.setText("se registraron los datos del producto ingresado");
+                
+                Tf1.setText("");
+                Tf2.setText("");
+            } catch (SQLException ex){
+                setTitle(ex.toString());            
             }
-        
-        
-            });
+        });
         
     }//GEN-LAST:event_BtnAltaActionPerformed
 
     private void BtnAlta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAlta1ActionPerformed
-        BtnAlta1.addActionListener(new ActionListener(){
-            
-            public void actionPerformed(ActionEvent arg){
+        BtnAlta1.addActionListener((ActionEvent arg) -> {
+            Lblresultado1.setText("");
+            try{
+                try (Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/basedesarrollo", "root", "")){
+                    Statement comando = conexion.createStatement();
+                    comando.executeUpdate("insert into vendedores (nombre, comision) values ('" +Tf3.getText() + " '," +Tf4.getText()+ ")");
+                    
+                    conexion.close();
+                }
                 
-                Lblresultado1.setText("");
-                try{
-                        try (Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/basedesarrollo", "root", "")){
-                                Statement comando = conexion.createStatement();
-                                comando.executeUpdate("insert into vendedores (nombre, comision) values ('" +Tf3.getText() + " '," +Tf4.getText()+ ")");
-                                
-                         conexion.close();
-                        }
-                        
-                   Lblresultado1.setText("se registraron los datos del vendedor ingresado");
-                   
-                   Tf3.setText("");
-                   Tf4.setText("");                   
-                } catch (SQLException ex){
-                    setTitle(ex.toString());
-                }            
+                Lblresultado1.setText("se registraron los datos del vendedor ingresado");
+                
+                Tf3.setText("");
+                Tf4.setText("");
+            } catch (SQLException ex){
+                setTitle(ex.toString());            
             }
-        
-        
-            });
+        });
         
     }//GEN-LAST:event_BtnAlta1ActionPerformed
 
