@@ -3,6 +3,7 @@ package consultas;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -42,28 +43,45 @@ public class ConsultasDb extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        Lbltitulo = new javax.swing.JLabel();
+        lblogo = new javax.swing.JLabel();
         Lbldescripcion = new javax.swing.JLabel();
         Lblprecio = new javax.swing.JLabel();
+        LblVendedor = new javax.swing.JLabel();
+        LblComision = new javax.swing.JLabel();
+        Lblconsultar = new javax.swing.JLabel();
         Lblresultado = new javax.swing.JLabel();
         Tf1 = new javax.swing.JTextField();
         Tf2 = new javax.swing.JTextField();
-        BtnAlta = new javax.swing.JButton();
-        lblogo = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        LblVendedor = new javax.swing.JLabel();
         Tf3 = new javax.swing.JTextField();
-        LblComision = new javax.swing.JLabel();
         Tf4 = new javax.swing.JTextField();
+        Tf5 = new javax.swing.JTextField();
+        BtnAlta = new javax.swing.JButton();
         BtnAlta1 = new javax.swing.JButton();
-        Lblresultado1 = new javax.swing.JLabel();
+        BtnConsultas = new javax.swing.JButton();
+        BtnConsultas1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(725, 500));
+        setMinimumSize(new java.awt.Dimension(725, 500));
+        setPreferredSize(new java.awt.Dimension(725, 500));
 
         jPanel1.setBackground(java.awt.SystemColor.inactiveCaption);
-        jPanel1.setMaximumSize(new java.awt.Dimension(600, 400));
-        jPanel1.setMinimumSize(new java.awt.Dimension(600, 400));
-        jPanel1.setPreferredSize(new java.awt.Dimension(600, 400));
+        jPanel1.setMaximumSize(new java.awt.Dimension(725, 500));
+        jPanel1.setMinimumSize(new java.awt.Dimension(725, 500));
+        jPanel1.setPreferredSize(new java.awt.Dimension(725, 500));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Lbltitulo.setFont(new java.awt.Font("Roboto", 0, 36)); // NOI18N
+        Lbltitulo.setForeground(new java.awt.Color(102, 102, 102));
+        Lbltitulo.setText("Conexion a bases de datos");
+        Lbltitulo.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jPanel1.add(Lbltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 461, 80));
+
+        lblogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo03.jpg"))); // NOI18N
+        lblogo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.add(lblogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(467, 0, 140, 80));
 
         Lbldescripcion.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
         Lbldescripcion.setForeground(new java.awt.Color(102, 102, 102));
@@ -73,7 +91,7 @@ public class ConsultasDb extends javax.swing.JFrame {
         Lbldescripcion.setMaximumSize(new java.awt.Dimension(90, 25));
         Lbldescripcion.setMinimumSize(new java.awt.Dimension(90, 25));
         Lbldescripcion.setPreferredSize(new java.awt.Dimension(90, 25));
-        jPanel1.add(Lbldescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 130, 110, 30));
+        jPanel1.add(Lbldescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 110, 30));
 
         Lblprecio.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
         Lblprecio.setForeground(new java.awt.Color(102, 102, 102));
@@ -83,22 +101,64 @@ public class ConsultasDb extends javax.swing.JFrame {
         Lblprecio.setMaximumSize(new java.awt.Dimension(90, 25));
         Lblprecio.setMinimumSize(new java.awt.Dimension(90, 25));
         Lblprecio.setPreferredSize(new java.awt.Dimension(90, 25));
-        jPanel1.add(Lblprecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 180, 110, 30));
+        jPanel1.add(Lblprecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 110, 30));
+
+        LblVendedor.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
+        LblVendedor.setForeground(new java.awt.Color(102, 102, 102));
+        LblVendedor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LblVendedor.setText("Vendedor");
+        LblVendedor.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        LblVendedor.setMaximumSize(new java.awt.Dimension(90, 25));
+        LblVendedor.setMinimumSize(new java.awt.Dimension(90, 25));
+        LblVendedor.setPreferredSize(new java.awt.Dimension(90, 25));
+        jPanel1.add(LblVendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, 106, 31));
+
+        LblComision.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
+        LblComision.setForeground(new java.awt.Color(102, 102, 102));
+        LblComision.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LblComision.setText("Comision");
+        LblComision.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        LblComision.setMaximumSize(new java.awt.Dimension(90, 25));
+        LblComision.setMinimumSize(new java.awt.Dimension(90, 25));
+        LblComision.setPreferredSize(new java.awt.Dimension(90, 25));
+        jPanel1.add(LblComision, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, 110, 30));
+
+        Lblconsultar.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
+        Lblconsultar.setForeground(new java.awt.Color(102, 102, 102));
+        Lblconsultar.setText("Ingrese el codigo a consultar");
+        Lblconsultar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.add(Lblconsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 270, 30));
 
         Lblresultado.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
         Lblresultado.setForeground(new java.awt.Color(102, 102, 102));
         Lblresultado.setText("Resultado");
-        jPanel1.add(Lblresultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 607, 40));
+        jPanel1.add(Lblresultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 607, 40));
 
         Tf1.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
         Tf1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         Tf1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel1.add(Tf1, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 131, 150, 31));
+        jPanel1.add(Tf1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 150, 31));
 
         Tf2.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
         Tf2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         Tf2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel1.add(Tf2, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 181, 150, 30));
+        jPanel1.add(Tf2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 150, 30));
+
+        Tf3.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
+        Tf3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Tf3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.add(Tf3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 90, 168, 31));
+
+        Tf4.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
+        Tf4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Tf4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.add(Tf4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 140, 170, 30));
+
+        Tf5.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
+        Tf5.setForeground(new java.awt.Color(102, 102, 102));
+        Tf5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Tf5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.add(Tf5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, 130, 30));
 
         BtnAlta.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
         BtnAlta.setForeground(new java.awt.Color(102, 102, 102));
@@ -112,48 +172,7 @@ public class ConsultasDb extends javax.swing.JFrame {
                 BtnAltaActionPerformed(evt);
             }
         });
-        jPanel1.add(BtnAlta, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, 140, 40));
-
-        lblogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo03.jpg"))); // NOI18N
-        lblogo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel1.add(lblogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(467, 0, 140, 80));
-
-        jLabel1.setFont(new java.awt.Font("Roboto", 0, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel1.setText("Conexion a bases de datos");
-        jLabel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 461, 80));
-
-        LblVendedor.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
-        LblVendedor.setForeground(new java.awt.Color(102, 102, 102));
-        LblVendedor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        LblVendedor.setText("Vendedor");
-        LblVendedor.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        LblVendedor.setMaximumSize(new java.awt.Dimension(90, 25));
-        LblVendedor.setMinimumSize(new java.awt.Dimension(90, 25));
-        LblVendedor.setPreferredSize(new java.awt.Dimension(90, 25));
-        jPanel1.add(LblVendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(284, 131, 106, 31));
-
-        Tf3.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        Tf3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        Tf3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel1.add(Tf3, new org.netbeans.lib.awtextra.AbsoluteConstraints(402, 131, 168, 31));
-
-        LblComision.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
-        LblComision.setForeground(new java.awt.Color(102, 102, 102));
-        LblComision.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        LblComision.setText("Comision");
-        LblComision.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        LblComision.setMaximumSize(new java.awt.Dimension(90, 25));
-        LblComision.setMinimumSize(new java.awt.Dimension(90, 25));
-        LblComision.setPreferredSize(new java.awt.Dimension(90, 25));
-        jPanel1.add(LblComision, new org.netbeans.lib.awtextra.AbsoluteConstraints(284, 180, 110, 30));
-
-        Tf4.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        Tf4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        Tf4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel1.add(Tf4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 180, 170, 30));
+        jPanel1.add(BtnAlta, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 140, 40));
 
         BtnAlta1.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
         BtnAlta1.setForeground(new java.awt.Color(102, 102, 102));
@@ -167,22 +186,49 @@ public class ConsultasDb extends javax.swing.JFrame {
                 BtnAlta1ActionPerformed(evt);
             }
         });
-        jPanel1.add(BtnAlta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 240, 140, 40));
+        jPanel1.add(BtnAlta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, 140, 40));
 
-        Lblresultado1.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
-        Lblresultado1.setForeground(new java.awt.Color(102, 102, 102));
-        Lblresultado1.setText("Resultado");
-        jPanel1.add(Lblresultado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, 607, 40));
+        BtnConsultas.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
+        BtnConsultas.setForeground(new java.awt.Color(102, 102, 102));
+        BtnConsultas.setText("Consulta Articulo");
+        BtnConsultas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        BtnConsultas.setMaximumSize(new java.awt.Dimension(125, 25));
+        BtnConsultas.setMinimumSize(new java.awt.Dimension(125, 25));
+        BtnConsultas.setPreferredSize(new java.awt.Dimension(125, 25));
+        BtnConsultas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnConsultasActionPerformed(evt);
+            }
+        });
+        jPanel1.add(BtnConsultas, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 240, 140, 40));
+
+        BtnConsultas1.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
+        BtnConsultas1.setForeground(new java.awt.Color(102, 102, 102));
+        BtnConsultas1.setText("Consulta Vendedor");
+        BtnConsultas1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        BtnConsultas1.setMaximumSize(new java.awt.Dimension(125, 25));
+        BtnConsultas1.setMinimumSize(new java.awt.Dimension(125, 25));
+        BtnConsultas1.setPreferredSize(new java.awt.Dimension(125, 25));
+        BtnConsultas1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnConsultas1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(BtnConsultas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 240, 160, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -213,7 +259,7 @@ public class ConsultasDb extends javax.swing.JFrame {
 
     private void BtnAlta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAlta1ActionPerformed
         BtnAlta1.addActionListener((ActionEvent arg) -> {
-            Lblresultado1.setText("");
+            Lblresultado.setText("");
             try{
                 try (Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/basedesarrollo", "root", "")){
                     Statement comando = conexion.createStatement();
@@ -222,7 +268,7 @@ public class ConsultasDb extends javax.swing.JFrame {
                     conexion.close();
                 }
                 
-                Lblresultado1.setText("se registraron los datos del vendedor ingresado");
+                Lblresultado.setText("se registraron los datos del vendedor ingresado");
                 
                 Tf3.setText("");
                 Tf4.setText("");
@@ -232,6 +278,58 @@ public class ConsultasDb extends javax.swing.JFrame {
         });
         
     }//GEN-LAST:event_BtnAlta1ActionPerformed
+
+    private void BtnConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConsultasActionPerformed
+        // TODO add your handling code here:
+        BtnConsultas.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent arg){
+                Lblresultado.setText("");
+                Tf1.setText("");
+                Tf2.setText("");
+                try{
+                Connection conexion=DriverManager.getConnection("jdbc:mysql://localhost/basedesarrollo", "root", "");
+                Statement comando = conexion.createStatement();
+                    java.sql.ResultSet registro = comando.executeQuery("select descripcion, precio from articulos where codigo="+Tf5.getText());
+                    if(registro.next() == true){
+                        Tf1.setText(registro.getString("descripcion"));
+                        Tf2.setText(registro.getString("precio"));
+                    } else {
+                        Lblresultado.setText("No existe el articulo con el codigo mencionado");
+                    }
+                    conexion.close();
+                } catch(SQLException ex){
+                    setTitle(ex.toString());
+                }
+            }
+        });
+    }//GEN-LAST:event_BtnConsultasActionPerformed
+
+    private void BtnConsultas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConsultas1ActionPerformed
+        // TODO add your handling code here:
+        BtnConsultas1.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent arg){
+                Lblresultado.setText("");
+                Tf3.setText("");
+                Tf4.setText("");
+                try{
+                Connection conexion=DriverManager.getConnection("jdbc:mysql://localhost/basedesarrollo", "root", "");
+                Statement comando = conexion.createStatement();
+                    java.sql.ResultSet registro = comando.executeQuery("select nombre, comision from vendedores where vendedor="+Tf5.getText());
+                    if(registro.next() == true){
+                        Tf3.setText(registro.getString("nombre"));
+                        Tf4.setText(registro.getString("comision"));
+                    } else {
+                        Lblresultado.setText("No existe el articulo con el codigo mencionado");
+                    }
+                    conexion.close();
+                } catch(SQLException ex){
+                    setTitle(ex.toString());
+                }
+            }
+        });
+    }//GEN-LAST:event_BtnConsultas1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -283,17 +381,20 @@ public class ConsultasDb extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAlta;
     private javax.swing.JButton BtnAlta1;
+    private javax.swing.JButton BtnConsultas;
+    private javax.swing.JButton BtnConsultas1;
     private javax.swing.JLabel LblComision;
     private javax.swing.JLabel LblVendedor;
+    private javax.swing.JLabel Lblconsultar;
     private javax.swing.JLabel Lbldescripcion;
     private javax.swing.JLabel Lblprecio;
     private javax.swing.JLabel Lblresultado;
-    private javax.swing.JLabel Lblresultado1;
+    private javax.swing.JLabel Lbltitulo;
     private javax.swing.JTextField Tf1;
     private javax.swing.JTextField Tf2;
     private javax.swing.JTextField Tf3;
     private javax.swing.JTextField Tf4;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField Tf5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblogo;
     // End of variables declaration//GEN-END:variables
