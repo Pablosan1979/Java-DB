@@ -28,7 +28,7 @@ public class ConsultasDb extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException ex) {
-                setTitle(ex.toString());
+            setTitle(ex.toString());
         }
 
     }
@@ -60,11 +60,13 @@ public class ConsultasDb extends javax.swing.JFrame {
         BtnAlta1 = new javax.swing.JButton();
         BtnConsultas = new javax.swing.JButton();
         BtnConsultas1 = new javax.swing.JButton();
+        BtnSalir = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(725, 500));
         setMinimumSize(new java.awt.Dimension(725, 500));
-        setPreferredSize(new java.awt.Dimension(725, 500));
+        setUndecorated(true);
+        setResizable(false);
 
         jPanel1.setBackground(java.awt.SystemColor.inactiveCaption);
         jPanel1.setMaximumSize(new java.awt.Dimension(725, 500));
@@ -216,6 +218,16 @@ public class ConsultasDb extends javax.swing.JFrame {
         });
         jPanel1.add(BtnConsultas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 240, 160, 40));
 
+        BtnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/3456192.png"))); // NOI18N
+        BtnSalir.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        BtnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSalirActionPerformed(evt);
+            }
+        });
+        jPanel1.add(BtnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 380, 120, 120));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -235,70 +247,70 @@ public class ConsultasDb extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAltaActionPerformed
-        
+
         BtnAlta.addActionListener((ActionEvent arg) -> {
             Lblresultado.setText("");
-            try{
-                try (Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/basedesarrollo", "root", "")){
+            try {
+                try (Connection conexion = DriverManager.getConnection("jdbc:mysql://sql10.freemysqlhosting.net/sql10601869", "sql10601869", "yKaJHyGgB1")) {
                     Statement comando = conexion.createStatement();
-                    comando.executeUpdate("insert into articulos (descripcion, precio) values ('" +Tf1.getText() + " '," +Tf2.getText()+ ")");
-                    
+                    comando.executeUpdate("insert into articulos (descripcion, precio) values ('" + Tf1.getText() + " '," + Tf2.getText() + ")");
+
                     conexion.close();
                 }
-                
+
                 Lblresultado.setText("se registraron los datos del producto ingresado");
-                
+
                 Tf1.setText("");
                 Tf2.setText("");
-            } catch (SQLException ex){
-                setTitle(ex.toString());            
+            } catch (SQLException ex) {
+                setTitle(ex.toString());
             }
         });
-        
+
     }//GEN-LAST:event_BtnAltaActionPerformed
 
     private void BtnAlta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAlta1ActionPerformed
         BtnAlta1.addActionListener((ActionEvent arg) -> {
             Lblresultado.setText("");
-            try{
-                try (Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/basedesarrollo", "root", "")){
+            try {
+                try (Connection conexion = DriverManager.getConnection("jdbc:mysql://sql10.freemysqlhosting.net/sql10601869", "sql10601869", "yKaJHyGgB1")) {
                     Statement comando = conexion.createStatement();
-                    comando.executeUpdate("insert into vendedores (nombre, comision) values ('" +Tf3.getText() + " '," +Tf4.getText()+ ")");
-                    
+                    comando.executeUpdate("insert into vendedores (nombre, comision) values ('" + Tf3.getText() + " '," + Tf4.getText() + ")");
+
                     conexion.close();
                 }
-                
+
                 Lblresultado.setText("se registraron los datos del vendedor ingresado");
-                
+
                 Tf3.setText("");
                 Tf4.setText("");
-            } catch (SQLException ex){
-                setTitle(ex.toString());            
+            } catch (SQLException ex) {
+                setTitle(ex.toString());
             }
         });
-        
+
     }//GEN-LAST:event_BtnAlta1ActionPerformed
 
     private void BtnConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConsultasActionPerformed
         // TODO add your handling code here:
-        BtnConsultas.addActionListener(new ActionListener(){
+        BtnConsultas.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent arg){
+            public void actionPerformed(ActionEvent arg) {
                 Lblresultado.setText("");
                 Tf1.setText("");
                 Tf2.setText("");
-                try{
-                Connection conexion=DriverManager.getConnection("jdbc:mysql://localhost/basedesarrollo", "root", "");
-                Statement comando = conexion.createStatement();
-                    java.sql.ResultSet registro = comando.executeQuery("select descripcion, precio from articulos where codigo="+Tf5.getText());
-                    if(registro.next() == true){
+                try {
+                    Connection conexion = DriverManager.getConnection("jdbc:mysql://sql10.freemysqlhosting.net/sql10601869", "sql10601869", "yKaJHyGgB1");
+                    Statement comando = conexion.createStatement();
+                    java.sql.ResultSet registro = comando.executeQuery("select descripcion, precio from articulos where codigo=" + Tf5.getText());
+                    if (registro.next() == true) {
                         Tf1.setText(registro.getString("descripcion"));
                         Tf2.setText(registro.getString("precio"));
                     } else {
                         Lblresultado.setText("No existe el articulo con el codigo mencionado");
                     }
                     conexion.close();
-                } catch(SQLException ex){
+                } catch (SQLException ex) {
                     setTitle(ex.toString());
                 }
             }
@@ -307,29 +319,40 @@ public class ConsultasDb extends javax.swing.JFrame {
 
     private void BtnConsultas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConsultas1ActionPerformed
         // TODO add your handling code here:
-        BtnConsultas1.addActionListener(new ActionListener(){
+        BtnConsultas1.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent arg){
+            public void actionPerformed(ActionEvent arg) {
                 Lblresultado.setText("");
                 Tf3.setText("");
                 Tf4.setText("");
-                try{
-                Connection conexion=DriverManager.getConnection("jdbc:mysql://localhost/basedesarrollo", "root", "");
-                Statement comando = conexion.createStatement();
-                    java.sql.ResultSet registro = comando.executeQuery("select nombre, comision from vendedores where vendedor="+Tf5.getText());
-                    if(registro.next() == true){
+                try {
+                    Connection conexion = DriverManager.getConnection("jdbc:mysql://sql10.freemysqlhosting.net/sql10601869", "sql10601869", "yKaJHyGgB1");
+                    Statement comando = conexion.createStatement();
+                    java.sql.ResultSet registro = comando.executeQuery("select nombre, comision from vendedores where vendedor=" + Tf5.getText());
+                    if (registro.next() == true) {
                         Tf3.setText(registro.getString("nombre"));
                         Tf4.setText(registro.getString("comision"));
                     } else {
-                        Lblresultado.setText("No existe el articulo con el codigo mencionado");
+                        Lblresultado.setText("No existe el vendedor con el codigo mencionado");
                     }
                     conexion.close();
-                } catch(SQLException ex){
+                } catch (SQLException ex) {
                     setTitle(ex.toString());
                 }
             }
         });
     }//GEN-LAST:event_BtnConsultas1ActionPerformed
+
+    private void BtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirActionPerformed
+        // TODO add your handling code here:
+        Image img = Toolkit.getDefaultToolkit().createImage(getClass().getResource("/Imagenes/3456192.png"));
+        this.setIconImage(img);
+        BtnSalir.setIcon(new ImageIcon(img.getScaledInstance(BtnSalir.getWidth(), BtnSalir.getHeight(), Image.SCALE_SMOOTH)));
+        this.setLocationRelativeTo(null);
+        
+        System.exit(0);
+        
+    }//GEN-LAST:event_BtnSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -346,27 +369,23 @@ public class ConsultasDb extends javax.swing.JFrame {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
 
-}
+                }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ConsultasDb.class  
+            java.util.logging.Logger.getLogger(ConsultasDb.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(ConsultasDb.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-} catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ConsultasDb.class  
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(ConsultasDb.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-} catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ConsultasDb.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ConsultasDb.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(ConsultasDb.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -383,6 +402,7 @@ public class ConsultasDb extends javax.swing.JFrame {
     private javax.swing.JButton BtnAlta1;
     private javax.swing.JButton BtnConsultas;
     private javax.swing.JButton BtnConsultas1;
+    private javax.swing.JButton BtnSalir;
     private javax.swing.JLabel LblComision;
     private javax.swing.JLabel LblVendedor;
     private javax.swing.JLabel Lblconsultar;
