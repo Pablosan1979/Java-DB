@@ -319,6 +319,7 @@ public class ConsultasDb extends javax.swing.JFrame {
 
     private void BtnConsultas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConsultas1ActionPerformed
         // TODO add your handling code here:
+        
         BtnConsultas1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg) {
