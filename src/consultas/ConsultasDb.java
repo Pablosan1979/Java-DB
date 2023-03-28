@@ -218,7 +218,7 @@ public class ConsultasDb extends javax.swing.JFrame {
         });
         jPanel1.add(BtnConsultas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 240, 160, 40));
 
-        BtnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/3456192.png"))); // NOI18N
+        BtnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/salir.png"))); // NOI18N
         BtnSalir.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         BtnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BtnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -251,7 +251,7 @@ public class ConsultasDb extends javax.swing.JFrame {
         BtnAlta.addActionListener((ActionEvent arg) -> {
             Lblresultado.setText("");
             try {
-                try (Connection conexion = DriverManager.getConnection("jdbc:mysql://sql10.freemysqlhosting.net/sql10601869", "sql10601869", "yKaJHyGgB1")) {
+                try (Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/prueba", "root", "")) {
                     Statement comando = conexion.createStatement();
                     comando.executeUpdate("insert into articulos (descripcion, precio) values ('" + Tf1.getText() + " '," + Tf2.getText() + ")");
 
@@ -273,7 +273,7 @@ public class ConsultasDb extends javax.swing.JFrame {
         BtnAlta1.addActionListener((ActionEvent arg) -> {
             Lblresultado.setText("");
             try {
-                try (Connection conexion = DriverManager.getConnection("jdbc:mysql://sql10.freemysqlhosting.net/sql10601869", "sql10601869", "yKaJHyGgB1")) {
+                try (Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/prueba", "root", "")) {
                     Statement comando = conexion.createStatement();
                     comando.executeUpdate("insert into vendedores (nombre, comision) values ('" + Tf3.getText() + " '," + Tf4.getText() + ")");
 
@@ -300,7 +300,7 @@ public class ConsultasDb extends javax.swing.JFrame {
                 Tf1.setText("");
                 Tf2.setText("");
                 try {
-                    Connection conexion = DriverManager.getConnection("jdbc:mysql://sql10.freemysqlhosting.net/sql10601869", "sql10601869", "yKaJHyGgB1");
+                    Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/prueba", "root", "");
                     Statement comando = conexion.createStatement();
                     java.sql.ResultSet registro = comando.executeQuery("select descripcion, precio from articulos where codigo=" + Tf5.getText());
                     if (registro.next() == true) {
@@ -327,7 +327,7 @@ public class ConsultasDb extends javax.swing.JFrame {
                 Tf3.setText("");
                 Tf4.setText("");
                 try {
-                    Connection conexion = DriverManager.getConnection("jdbc:mysql://sql10.freemysqlhosting.net/sql10601869", "sql10601869", "yKaJHyGgB1");
+                    Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/prueba", "root", "");
                     Statement comando = conexion.createStatement();
                     java.sql.ResultSet registro = comando.executeQuery("select nombre, comision from vendedores where vendedor=" + Tf5.getText());
                     if (registro.next() == true) {
@@ -346,7 +346,7 @@ public class ConsultasDb extends javax.swing.JFrame {
 
     private void BtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirActionPerformed
         // TODO add your handling code here:
-        Image img = Toolkit.getDefaultToolkit().createImage(getClass().getResource("/Imagenes/3456192.png"));
+        Image img = Toolkit.getDefaultToolkit().createImage(getClass().getResource("/Imagenes/salir.png"));
         this.setIconImage(img);
         BtnSalir.setIcon(new ImageIcon(img.getScaledInstance(BtnSalir.getWidth(), BtnSalir.getHeight(), Image.SCALE_SMOOTH)));
         this.setLocationRelativeTo(null);
